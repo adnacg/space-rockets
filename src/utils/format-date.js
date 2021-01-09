@@ -1,20 +1,13 @@
+import moment from "moment";
+
+moment.locale("en");
+
 export function formatDate(timestamp) {
-  return new Intl.DateTimeFormat("en-US", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  }).format(new Date(timestamp));
+  return moment(timestamp).format("dddd, MMMM D, YYYY");
 }
 
-export function formatDateTime(timestamp) {
-  return new Intl.DateTimeFormat("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-    second: "numeric",
-    timeZoneName: "short",
-  }).format(new Date(timestamp));
+export function formatDateTime(timestamp, preserveTimezone = false) {
+  return preserveTimezone
+    ? moment(timestamp).parseZone().format("MMMM D, YYYY, h:mm:ss A Z")
+    : moment(timestamp).format("MMMM D, YYYY, h:mm:ss A Z");
 }
