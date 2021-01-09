@@ -1,8 +1,8 @@
 import { createContext } from "react";
 
 export const FAVOURITES_CONTEXT_DEFAULT_VALUE = {
-  launches: {},
-  launchPads: {},
+  favouriteLaunches: {},
+  favouriteLaunchPads: {},
   addFavouriteLaunch: () => {},
   removeFavouriteLaunch: () => {},
   addFavouriteLaunchPad: () => {},

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { removeItem } from "../utils/helpers";
 
 const LAUNCHES_KEY = "launches";
 const LAUNCH_PADS_KEY = "launchPads";
@@ -26,10 +27,12 @@ export const useFavourites = () => {
   };
 
   const removeFavouriteLaunch = (launchId) => {
-    delete favouriteLaunches[launchId];
+    const newLaunches = removeItem(favouriteLaunches, launchId);
+    setFavouriteLaunches(newLaunches);
   };
   const removeFavouriteLaunchPad = (launchPadId) => {
-    delete favouriteLaunchPads[launchPadId];
+    const newLaunchPads = removeItem(favouriteLaunchPads, launchPadId);
+    setFavouriteLaunchPads(newLaunchPads);
   };
 
   return {

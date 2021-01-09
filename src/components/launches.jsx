@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Badge, Box, Image, SimpleGrid, Text, Flex } from "@chakra-ui/core";
+import { StarIcon, MoonIcon } from "@chakra-ui/icons";
 import { format as timeAgo } from "timeago.js";
 import { Link } from "react-router-dom";
 
 import { useSpaceXPaginated } from "../hooks/use-space-x";
 import { formatDate } from "../utils/format-date";
+import { favouritesContext } from "../context/favourites";
 import Error from "./error";
 import Breadcrumbs from "./breadcrumbs";
 import LoadMoreButton from "./load-more-button";
@@ -46,6 +48,12 @@ export default function Launches() {
 }
 
 export function LaunchItem({ launch }) {
+  const {
+    favouriteLaunches,
+    addFavouriteLaunch,
+    removeFavouriteLaunch,
+  } = useContext(favouritesContext);
+
   return (
     <Box
       as={Link}
@@ -115,6 +123,25 @@ export function LaunchItem({ launch }) {
           <Text color="gray.500" ml="2" fontSize="sm">
             {timeAgo(launch.launch_date_utc)}
           </Text>
+          {Object.keys(favouriteLaunches).includes(
+            launch.flight_number.toString()
+          ) ? (
+            <StarIcon
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                removeFavouriteLaunch(launch.flight_number.toString());
+              }}
+            />
+          ) : (
+            <MoonIcon
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                addFavouriteLaunch(launch.flight_number.toString());
+              }}
+            />
+          )}
         </Flex>
       </Box>
     </Box>
