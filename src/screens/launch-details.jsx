@@ -24,10 +24,10 @@ import {
 
 import { useSpaceX } from "../hooks/use-space-x";
 import { formatDateTime } from "../utils/format-date";
-import Error from "./error";
-import Breadcrumbs from "./breadcrumbs";
+import Error from "../components/error";
+import Breadcrumbs from "../components/breadcrumbs";
 
-export default function Launch() {
+export default function LaunchDetails() {
   let { launchId } = useParams();
   const { data: launch, error } = useSpaceX(`/launches/${launchId}`);
 

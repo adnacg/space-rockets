@@ -1,10 +1,17 @@
+import { useDisclosure } from "@chakra-ui/core";
 import { useEffect, useState } from "react";
 import { removeItem } from "../utils/helpers";
 
 const LAUNCHES_KEY = "launches";
 const LAUNCH_PADS_KEY = "launchPads";
 
-export const useFavourites = () => {
+export const useFavouritesStore = () => {
+  const {
+    isOpen: isFavouritesOpen,
+    onClose: closeFavourites,
+    onOpen: openFavourites,
+  } = useDisclosure();
+
   const [favouriteLaunches, setFavouriteLaunches] = useState(
     () => JSON.parse(localStorage.getItem(LAUNCHES_KEY)) || {}
   );
@@ -19,11 +26,17 @@ export const useFavourites = () => {
     localStorage.setItem(LAUNCH_PADS_KEY, JSON.stringify(favouriteLaunchPads));
   }, [favouriteLaunchPads]);
 
-  const addFavouriteLaunch = (launchId) => {
-    setFavouriteLaunches({ ...favouriteLaunches, [launchId]: {} });
+  const addFavouriteLaunch = (launch) => {
+    setFavouriteLaunches({
+      ...favouriteLaunches,
+      [launch.flight_number.toString()]: launch,
+    });
   };
-  const addFavouriteLaunchPad = (launchPadId) => {
-    setFavouriteLaunchPads({ ...favouriteLaunchPads, [launchPadId]: {} });
+  const addFavouriteLaunchPad = (launchPad) => {
+    setFavouriteLaunchPads({
+      ...favouriteLaunchPads,
+      [launchPad.site_id]: launchPad,
+    });
   };
 
   const removeFavouriteLaunch = (launchId) => {
@@ -36,6 +49,9 @@ export const useFavourites = () => {
   };
 
   return {
+    isFavouritesOpen,
+    openFavourites,
+    closeFavourites,
     favouriteLaunches,
     favouriteLaunchPads,
     addFavouriteLaunch,
