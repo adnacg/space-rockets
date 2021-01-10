@@ -1,6 +1,7 @@
 import React from "react";
 import { Badge, Box, Text } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
+import { AddFavLaunchPadButton } from "./add-favourite-button";
 
 export default function LaunchPadCard({ launchPad }) {
   return (
@@ -34,6 +35,7 @@ export default function LaunchPadCard({ launchPad }) {
           >
             {launchPad.attempted_launches} attempted &bull;{" "}
             {launchPad.successful_launches} succeeded
+            <AddFavLaunchPadButton launchPad={launchPad} />
           </Box>
         </Box>
 

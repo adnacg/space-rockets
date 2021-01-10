@@ -1,19 +1,12 @@
-import React, { useContext } from "react";
-import { Badge, Box, Image, Text, Flex, IconButton } from "@chakra-ui/core";
-import { StarIcon, MoonIcon } from "@chakra-ui/icons";
+import React from "react";
+import { Badge, Box, Image, Text, Flex } from "@chakra-ui/core";
 import { format as timeAgo } from "timeago.js";
 import { Link } from "react-router-dom";
 
 import { formatDate } from "../utils/format-date";
-import { favouritesContext } from "../context/favourites";
+import { AddFavLaunchButton } from "./add-favourite-button";
 
 export function LaunchCard({ launch }) {
-  const {
-    favouriteLaunches,
-    addFavouriteLaunch,
-    removeFavouriteLaunch,
-  } = useContext(favouritesContext);
-
   return (
     <Box
       as={Link}
@@ -83,31 +76,7 @@ export function LaunchCard({ launch }) {
           <Text color="gray.500" ml="2" fontSize="sm">
             {timeAgo(launch.launch_date_utc)}
           </Text>
-          {Object.keys(favouriteLaunches).includes(
-            launch.flight_number.toString()
-          ) ? (
-            <IconButton
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                removeFavouriteLaunch(launch.flight_number.toString());
-              }}
-              icon={StarIcon}
-            >
-              Open
-            </IconButton>
-          ) : (
-            <IconButton
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                addFavouriteLaunch(launch);
-              }}
-              icon={MoonIcon}
-            >
-              Open
-            </IconButton>
-          )}
+          <AddFavLaunchButton launch={launch} />
         </Flex>
       </Box>
     </Box>

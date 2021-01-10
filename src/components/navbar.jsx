@@ -16,6 +16,7 @@ export default function NavBar() {
       padding="6"
       bg="gray.800"
       color="white"
+      height="12vh"
     >
       <Text
         fontFamily="mono"

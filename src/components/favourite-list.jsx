@@ -28,14 +28,14 @@ export default function FavouriteList() {
     >
       <DrawerOverlay style={{ top: "88px" }}>
         <DrawerContent
-          boxShadow="md"
+          boxShadow="lg"
           style={{
-            backgroundColor: "#e1f5fe",
+            backgroundColor: "white",
             width: "30%",
+            minWidth: "250px",
             height: "90vh",
-            marginTop: "88px",
+            marginTop: "12vh",
             overflow: "scroll",
-            border: "solid 1px",
           }}
         >
           <Box
@@ -47,10 +47,12 @@ export default function FavouriteList() {
             justifyItems="center"
           >
             <DrawerHeader>
-              <Heading size="lg">My Favourites</Heading>
+              <Heading size="lg" p="6">
+                Favourites
+              </Heading>
             </DrawerHeader>
             <DrawerBody width="100%">
-              <Heading size="md">
+              <Heading size="md" p="3">
                 Launches ({Object.keys(favouriteLaunches).length})
               </Heading>
               {Object.keys(favouriteLaunches).map((launchId) => (
@@ -59,7 +61,7 @@ export default function FavouriteList() {
                   launch={favouriteLaunches[launchId]}
                 />
               ))}
-              <Heading size="md">
+              <Heading size="md" p="3">
                 Launch Pads ({Object.keys(favouriteLaunchPads).length})
               </Heading>
               {Object.keys(favouriteLaunchPads).map((launchPadId) => (

@@ -26,6 +26,7 @@ import { useSpaceX } from "../hooks/use-space-x";
 import { formatDateTime } from "../utils/format-date";
 import Error from "../components/error";
 import Breadcrumbs from "../components/breadcrumbs";
+import { AddFavLaunchButton } from "../components/add-favourite-button";
 
 export default function LaunchDetails() {
   let { launchId } = useParams();
@@ -95,7 +96,9 @@ function Header({ launch }) {
         borderRadius="lg"
       >
         {launch.mission_name}
+        <AddFavLaunchButton launch={launch} />
       </Heading>
+
       <Stack isInline spacing="3">
         <Badge variantColor="purple" fontSize={["xs", "md"]}>
           #{launch.flight_number}
