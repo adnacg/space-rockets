@@ -28,6 +28,7 @@ export default function FavouriteList() {
     >
       <DrawerOverlay style={{ top: "88px" }}>
         <DrawerContent
+          className="favourites-drawer"
           boxShadow="lg"
           style={{
             backgroundColor: "white",

@@ -17,7 +17,6 @@
     "@emotion/core": "^10.0.35",
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^10.0.27",
-    "@material-ui/icons": "^4.11.2",
     "emotion-theming": "^10.0.27",
     "framer-motion": "^3.2.0",
     "history": "^5.0.0",
@@ -28,7 +27,7 @@
     "react-icons": "^4.1.0",
     "react-router": "^6.0.0-alpha.3",
     "react-router-dom": "^6.0.0-alpha.3",
-    "react-scripts": "3.4.3",
+    "react-scripts": "3.4.0",
     "swr": "^0.3.0",
     "timeago.js": "^4.0.2"
   },
@@ -51,5 +50,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cypress": "^6.2.1"
   }
 }

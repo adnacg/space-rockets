@@ -23,6 +23,7 @@ export function AddFavLaunchButton({ launch }) {
   ) {
     return (
       <IconButton
+        className="favourite-button"
         onClick={(e) => {
           e.stopPropagation();
           e.preventDefault();
@@ -41,6 +42,7 @@ export function AddFavLaunchButton({ launch }) {
   } else {
     return (
       <IconButton
+        className="not-favourite-button"
         onClick={(e) => {
           e.stopPropagation();
           e.preventDefault();
@@ -69,6 +71,7 @@ export function AddFavLaunchPadButton({ launchPad }) {
   if (Object.keys(favouriteLaunchPads).includes(launchPad.site_id.toString())) {
     return (
       <IconButton
+        className="favourite-button"
         onClick={(e) => {
           e.stopPropagation();
           e.preventDefault();
@@ -87,6 +90,7 @@ export function AddFavLaunchPadButton({ launchPad }) {
   } else {
     return (
       <IconButton
+        className="not-favourite-button"
         onClick={(e) => {
           e.stopPropagation();
           e.preventDefault();

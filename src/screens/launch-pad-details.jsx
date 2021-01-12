@@ -71,6 +71,7 @@ const randomColor = (start = 200, end = 250) =>
 function Header({ launchPad }) {
   return (
     <Flex
+      className="launchpad-details-header"
       background={`linear-gradient(${randomColor()}, ${randomColor()})`}
       bgPos="center"
       bgSize="cover"

@@ -6,6 +6,7 @@ import { AddFavLaunchPadButton } from "./add-favourite-button";
 export default function LaunchPadCard({ launchPad }) {
   return (
     <Box
+      className="launch-pad-card"
       as={Link}
       to={`/launch-pads/${launchPad.site_id}`}
       boxShadow="md"

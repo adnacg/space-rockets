@@ -10,6 +10,7 @@ export function FavouriteLaunch({ launch }) {
 
   return (
     <Box
+      className="favourite-launch-card"
       boxShadow="md"
       borderWidth="1px"
       rounded="lg"
@@ -47,6 +48,7 @@ export function FavouriteLaunchPad({ launchPad }) {
 
   return (
     <Box
+      className="favourite-launchpad-card"
       boxShadow="md"
       borderWidth="1px"
       rounded="lg"
