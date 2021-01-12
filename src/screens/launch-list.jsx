@@ -1,5 +1,5 @@
-import React from "react";
-import { SimpleGrid } from "@chakra-ui/core";
+import React, { useState } from "react";
+import { Input, SimpleGrid } from "@chakra-ui/core";
 
 import { useSpaceXPaginated } from "../hooks/use-space-x";
 import Error from "../components/error";
@@ -10,6 +10,7 @@ import { LaunchCard } from "../components/launch-card";
 const PAGE_SIZE = 12;
 
 export default function LaunchList() {
+  const [query, setQuery] = useState("");
   const { data, error, isValidating, setSize, size } = useSpaceXPaginated(
     "/launches/past",
     {
@@ -25,11 +26,21 @@ export default function LaunchList() {
         <Breadcrumbs
           items={[{ label: "Home", to: "/" }, { label: "Launches" }]}
         />
+        <Input
+          placeholder="Search mission"
+          marginLeft="25px"
+          width="50%"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        ></Input>
         <SimpleGrid m={[2, null, 6]} minChildWidth="350px" spacing="4">
           {error && <Error />}
           {data &&
             data
               .flat()
+              .filter((launch) =>
+                launch.mission_name.toLowerCase().includes(query.toLowerCase())
+              )
               .map((launch) => (
                 <LaunchCard launch={launch} key={launch.flight_number} />
               ))}
