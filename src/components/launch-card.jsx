@@ -9,6 +9,7 @@ import { AddFavLaunchButton } from "./add-favourite-button";
 export function LaunchCard({ launch }) {
   return (
     <Box
+      className="launch-card"
       as={Link}
       to={`/launches/${launch.flight_number.toString()}`}
       boxShadow="md"

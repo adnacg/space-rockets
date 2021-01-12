@@ -67,6 +67,7 @@ export default function LaunchDetails() {
 function Header({ launch }) {
   return (
     <Flex
+      className="launch-details-header"
       bgImage={`url(${launch.links.flickr_images[0]})`}
       bgPos="center"
       bgSize="cover"
