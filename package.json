@@ -34,7 +34,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "prod": "http-server build/"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -52,6 +53,7 @@
     ]
   },
   "devDependencies": {
-    "cypress": "^6.2.1"
+    "cypress": "^6.2.1",
+    "http-server": "^0.12.3"
   }
 }
