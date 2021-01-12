@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Box, Heading } from "@chakra-ui/core";
+import React, { useContext, useState } from "react";
+import { Box, Heading, Input } from "@chakra-ui/core";
 import {
   Drawer,
   DrawerBody,
@@ -11,6 +11,7 @@ import { favouritesContext } from "../context/favourites";
 import { FavouriteLaunch, FavouriteLaunchPad } from "./favourite-cards";
 
 export default function FavouriteList() {
+  const [query, setQuery] = useState("");
   const {
     isFavouritesOpen,
     closeFavourites,
@@ -51,26 +52,43 @@ export default function FavouriteList() {
               <Heading size="lg" p="6">
                 Favourites
               </Heading>
+              <Input
+                placeholder="Search favourite"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+              ></Input>
             </DrawerHeader>
             <DrawerBody width="100%">
               <Heading size="md" p="3">
                 Launches ({Object.keys(favouriteLaunches).length})
               </Heading>
-              {Object.keys(favouriteLaunches).map((launchId) => (
-                <FavouriteLaunch
-                  key={launchId}
-                  launch={favouriteLaunches[launchId]}
-                />
-              ))}
+              {Object.keys(favouriteLaunches)
+                .filter((launchId) =>
+                  favouriteLaunches[launchId].mission_name
+                    .toLowerCase()
+                    .includes(query.toLowerCase())
+                )
+                .map((launchId) => (
+                  <FavouriteLaunch
+                    key={launchId}
+                    launch={favouriteLaunches[launchId]}
+                  />
+                ))}
               <Heading size="md" p="3">
                 Launch Pads ({Object.keys(favouriteLaunchPads).length})
               </Heading>
-              {Object.keys(favouriteLaunchPads).map((launchPadId) => (
-                <FavouriteLaunchPad
-                  key={launchPadId}
-                  launchPad={favouriteLaunchPads[launchPadId]}
-                />
-              ))}
+              {Object.keys(favouriteLaunchPads)
+                .filter((launchPadId) =>
+                  favouriteLaunchPads[launchPadId].name
+                    .toLowerCase()
+                    .includes(query.toLowerCase())
+                )
+                .map((launchPadId) => (
+                  <FavouriteLaunchPad
+                    key={launchPadId}
+                    launchPad={favouriteLaunchPads[launchPadId]}
+                  />
+                ))}
             </DrawerBody>
           </Box>
         </DrawerContent>
